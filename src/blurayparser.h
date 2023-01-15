@@ -6,21 +6,28 @@
 
 #pragma once
 
+#include <filesystem>
+#include <memory>
+#include <vector>
+
+#include "boxed.h"
 #include "parser.h"
 
 namespace diskcat {
-class DvdParser : public Parser {
-  struct Context;
+
+class BlurayParser : public Parser {
+  class Context;
+
 public:
-  DvdParser();
-  ~DvdParser() override;
+  BlurayParser();
+  ~BlurayParser() override;
 
   void open(const std::filesystem::path &path) override;
   Boxed<std::vector<uint8_t>> next() override;
-  void close() override;
+  void close();
 
 private:
-  std::unique_ptr<Context> ctx_{nullptr};
-  int selected_title_;
+  std::unique_ptr<Context> ctx_;
 };
+
 } // namespace diskcat

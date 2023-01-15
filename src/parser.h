@@ -17,7 +17,7 @@ class Parser {
 public:
   virtual ~Parser() = default;
 
-  virtual void open(const std::filesystem::path &path, int title = -1) = 0;
+  virtual void open(const std::filesystem::path &path) = 0;
   virtual Boxed<std::vector<uint8_t>> next() = 0;
   virtual void close() = 0;
 };

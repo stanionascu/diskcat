@@ -6,9 +6,12 @@
 
 #include "dvdparser.h"
 
+#include <absl/flags/flag.h>
 #include <absl/log/log.h>
 #include <absl/strings/str_format.h>
 #include <dvdnav/dvdnav.h>
+
+#include "diskcat.h"
 
 namespace {
 
@@ -38,7 +41,9 @@ DvdParser::DvdParser() : ctx_(std::make_unique<Context>()) {}
 
 DvdParser::~DvdParser() { close(); }
 
-void DvdParser::open(const std::filesystem::path &path, int selected_title) {
+void DvdParser::open(const std::filesystem::path &path) {
+  auto selected_title = absl::GetFlag(FLAGS_title);
+
   if (ctx_->dvd != nullptr) {
     close();
   }

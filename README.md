@@ -8,9 +8,9 @@ You can conveniently pipe the output into FFmpeg or FFprobe, to identify the str
 $ cmake --build .
 ```
 
-## Reading a DVD image or folder
+## Reading a DVD or Bluray image or folder
 
-### Identifying the streams in a DVD disc image or folder
+### Identifying the streams in a DVD or Bluray disc image or folder
 ```
 $ diskcat /archive/SOME_FILE.iso | ffprobe -probesize 20M -analyzeduration 20M -i - -show_streams -loglevel error -print_format json
 {

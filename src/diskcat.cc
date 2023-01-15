@@ -25,6 +25,8 @@
 namespace fs = std::filesystem;
 
 ABSL_FLAG(int, title, -1, "Title number to use for playback. Default picks the longest detected title.");
+ABSL_FLAG(int, angle, 0, "Angle to select for playback. Defaults to 0.");
+ABSL_FLAG(int, min_title_length, 180, "Ignore titles that are shorter than 180s.");
 
 struct LogSink : absl::LogSink {
   void Send(const absl::LogEntry& entry) override {
@@ -53,7 +55,7 @@ int main(int argc, char **argv) {
   auto path = fs::path(flags[1]);
   {
     std::unique_ptr<Parser> parser = probe(path);
-    parser->open(path, absl::GetFlag(FLAGS_title));
+    parser->open(path);
 
     bool done = false;
     while (!done) {

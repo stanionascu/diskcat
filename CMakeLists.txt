@@ -7,16 +7,18 @@ option(USE_BUNDLED_ABSL_LIB "Use the absl submodule instead of the system packag
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(UDFREAD REQUIRED IMPORTED_TARGET "libudfread")
 pkg_check_modules(DVDNAV REQUIRED IMPORTED_TARGET "dvdnav")
+pkg_check_modules(BLURAY REQUIRED IMPORTED_TARGET "libbluray")
 
 if(USE_BUNDLED_ABSL_LIB)
     add_subdirectory(abseil-cpp)
 endif()
 
-set(SOURCES src/diskcat.cc src/dvdparser.cc src/probe.cc)
+set(SOURCES src/diskcat.cc src/dvdparser.cc src/probe.cc src/blurayparser.cc)
 add_executable(diskcat ${SOURCES})
 target_link_libraries(diskcat
     PkgConfig::UDFREAD
     PkgConfig::DVDNAV
+    PkgConfig::BLURAY
     absl::flags_parse
     absl::log_initialize
     absl::log)
