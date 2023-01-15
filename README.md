@@ -1,7 +1,7 @@
 # diskcat
 
-Diskcat is an utility that opens and reads the content of DVD images into stdout for reprodcessing.
-You can convenienetly pipe the output into FFmpeg or FFprobe, to identify the streams or remux into another format.
+Diskcat is an utility that opens and reads the content of DVD images into stdout for reprocessing.
+You can conveniently pipe the output into FFmpeg or FFprobe, to identify the streams or remux into another format.
 
 ## Compiling
 ```
